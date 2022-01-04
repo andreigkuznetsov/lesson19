@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import static filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
 
@@ -30,12 +31,11 @@ public class AppBookStoreTests {
         step("Повторное создание уже зарегистрированного пользователя", () -> {
             given()
                     .filter(customLogFilter().withCustomTemplates())
-                    .contentType("application/json")
-                    .accept("application/json")
-                    .body(webConfig.absData().toString())
-                    .when()
                     .log().uri()
                     .log().body()
+                    .contentType(JSON)
+                    .body(webConfig.absData().toString())
+                    .when()
                     .post("Account/v1/User")
                     .then()
                     .log().body()
@@ -53,12 +53,11 @@ public class AppBookStoreTests {
         step("Генерация токена для зарегистрированного пользователя", () -> {
             given()
                     .filter(customLogFilter().withCustomTemplates())
-                    .contentType("application/json")
-                    .accept("application/json")
-                    .body(webConfig.absData().toString())
-                    .when()
                     .log().uri()
                     .log().body()
+                    .contentType(JSON)
+                    .body(webConfig.absData().toString())
+                    .when()
                     .post("Account/v1/GenerateToken")
                     .then()
                     .log().body()
@@ -76,12 +75,11 @@ public class AppBookStoreTests {
         step("Генерация токена для незарегистрированного пользователя", () -> {
             given()
                     .filter(customLogFilter().withCustomTemplates())
-                    .contentType("application/json")
-                    .accept("application/json")
-                    .body(webConfig.absNoData().toString())
-                    .when()
                     .log().uri()
                     .log().body()
+                    .contentType(JSON)
+                    .body(webConfig.absNoData().toString())
+                    .when()
                     .post("Account/v1/GenerateToken")
                     .then()
                     .log().body()
