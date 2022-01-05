@@ -51,7 +51,7 @@ public class DemoWebShopTests {
         step("Получить cookie через api, установить его в браузере", () -> {
             authorizationCookie =
                     given(requestSpec)
-                            .contentType("application/x-www-form-urlencoded; charset=utf-8")
+                            .contentType("application/x-www-form-urlencoded")
                             .formParam("Email", webConfig.userLogin())
                             .formParam("Password", webConfig.userPassword())
                             .when()
@@ -74,7 +74,7 @@ public class DemoWebShopTests {
         step("Изменить Имя и Фамилию пользователя", () -> {
             given(requestSpec)
                             .cookie(cookieRequest)
-                            .contentType("application/x-www-form-urlencoded; charset=utf-8")
+                            .contentType("application/x-www-form-urlencoded")
                             .formParam("__RequestVerificationToken", RequestVerificationToken)
                             .formParam("Gender", "M")
                             .formParam("FirstName", firstName)
