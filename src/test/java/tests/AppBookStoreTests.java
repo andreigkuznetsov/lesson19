@@ -4,6 +4,7 @@ import config.AppConfig;
 import io.restassured.RestAssured;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +19,8 @@ public class AppBookStoreTests {
 
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
 
-    @BeforeAll
-    static void startUrl() {
+    @BeforeEach
+    void startUrl() {
         RestAssured.baseURI = webConfig.apiAbsUrl();
 
     }

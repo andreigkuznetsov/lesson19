@@ -1,7 +1,6 @@
 package config;
 
 import org.aeonbits.owner.Config;
-import org.hamcrest.Matcher;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
