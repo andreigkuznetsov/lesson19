@@ -20,7 +20,7 @@ import static io.restassured.RestAssured.given;
 import static specs.RestAssuredSpec.requestSpec;
 
 
-public class DemoWebShopTests extends TestBase {
+public class DemoWebShopTests {
 
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
     public static String authorizationCookie;
