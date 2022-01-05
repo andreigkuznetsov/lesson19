@@ -44,6 +44,8 @@ tasks.withType(JavaCompile) {
 
 
 tasks.withType(Test) {
+
+    systemProperty("RemoteBrowserUrl", System.getProperty("RemoteBrowserUrl", ""))
     systemProperties(System.getProperties())
     useJUnitPlatform()
 
