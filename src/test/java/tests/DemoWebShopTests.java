@@ -51,7 +51,7 @@ public class DemoWebShopTests {
         step("Получить cookie через api, установить его в браузере", () -> {
             authorizationCookie =
                     given(requestSpec)
-                            //.contentType("application/x-www-form-urlencoded")
+                            .contentType("application/x-www-form-urlencoded")
                             .formParam("Email", webConfig.userLogin())
                             .formParam("Password", webConfig.userPassword())
                             .when()
