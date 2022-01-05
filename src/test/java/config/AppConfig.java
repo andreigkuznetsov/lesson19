@@ -21,8 +21,8 @@ public interface AppConfig extends Config {
     @Key("userPassword")
     String userPassword();
 
-    //@Key("apiReqUrl")
-   // String apiReqUrl();
+    @Key("apiReqUrl")
+    String apiReqUrl();
 
     @Key("requestBody")
     String requestBody();
