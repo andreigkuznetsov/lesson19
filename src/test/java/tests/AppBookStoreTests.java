@@ -20,7 +20,7 @@ public class AppBookStoreTests {
 
     @BeforeAll
     static void startAbsUrl() {
-        RestAssured.baseURI = "https://demoqa.com/";
+        RestAssured.baseURI = webConfig.apiAbsUrl();
 
     }
 
