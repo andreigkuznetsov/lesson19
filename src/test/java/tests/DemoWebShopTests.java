@@ -72,7 +72,6 @@ public class DemoWebShopTests {
 
 
         step("Изменить Имя и Фамилию пользователя", () -> {
-
             given(requestSpec)
                             .cookie(cookieRequest)
                             .contentType("application/x-www-form-urlencoded")

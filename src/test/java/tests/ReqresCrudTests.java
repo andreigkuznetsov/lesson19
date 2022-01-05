@@ -4,6 +4,7 @@ import config.AppConfig;
 import io.restassured.RestAssured;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,7 @@ public class ReqresCrudTests {
     }
 
     @Test
-    @DisplayName("Создать пользователя с именем и должностью")
+    @DisplayName("Создать пользователя с именем и должностью, изменить должность")
     void createTest() {
 
         step("Создать пользователя с именем и должностью", () -> {
@@ -40,13 +41,8 @@ public class ReqresCrudTests {
                     .body("name", is(webConfig.name()),
                             "job", is(webConfig.job()));
         });
-    }
 
-    @Test
-    @DisplayName("Обновить должность пользователя")
-    void updatePutTest() {
-
-        step("Обновить должность пользователя", () -> {
+        step("Изменить должность пользователя", () -> {
             given(requestSpec)
                     .contentType(JSON)
                     .body(webConfig.newrequestBody().toString())
@@ -61,7 +57,7 @@ public class ReqresCrudTests {
     }
 
     @Test
-    @DisplayName("Удалить данные пользователяю")
+    @DisplayName("Удалить данные пользователя")
     void deleteTest() {
 
         step("Удалить данные пользователя", () -> {
@@ -109,7 +105,7 @@ public class ReqresCrudTests {
     }
 
     @Test
-    @DisplayName("Авторизироваться с email и паролем пользовтеля")
+    @DisplayName("Авторизироваться с email и паролем пользователя")
     void loginTest() {
 
         step("Авторизироваться с email и паролем пользовтеля", () -> {
