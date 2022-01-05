@@ -52,8 +52,10 @@ public class DemoWebShopTests {
             authorizationCookie =
                     given(requestSpec)
                             .contentType("application/x-www-form-urlencoded")
-                            .formParam("Email", webConfig.userLogin())
-                            .formParam("Password", webConfig.userPassword())
+                            //.formParam("Email", webConfig.userLogin())
+                            //.formParam("Password", webConfig.userPassword())
+                            .formParam("Email", "andysmith@email.com")
+                            .formParam("Password", "654321")
                             .when()
                             .post("login")
                             .then()
