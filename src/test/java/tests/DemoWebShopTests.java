@@ -20,7 +20,8 @@ import static specs.RestAssuredDwsSpec.requestSpec;
 public class DemoWebShopTests extends TestBase {
 
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
-    public static String authorizationCookie;
+
+    String authorizationCookie;
 
     @Test
     @DisplayName("Изменить Имя и Фамилию пользовтаеля")
