@@ -18,7 +18,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static specs.RestAssuredSpec.requestSpec;
 
 
 public class DemoWebShopTests extends TestBase {
@@ -68,7 +67,7 @@ public class DemoWebShopTests extends TestBase {
         });
 
         step("Открыть минимальный контент, потому что cookie можно установить при открытии сайта", () ->
-                open("/Themes/DefaultClean/Content/images/logo.png"));
+                open("Themes/DefaultClean/Content/images/logo.png"));
 
         step("Установить cookie в браузер", () ->
                 getWebDriver().manage().addCookie(

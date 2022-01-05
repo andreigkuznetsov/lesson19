@@ -13,7 +13,6 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
-import static specs.RestAssuredSpec.requestSpec;
 
 public class AppBookStoreTests {
 
@@ -35,7 +34,7 @@ public class AppBookStoreTests {
                     .log().uri()
                     .log().body()
                     .contentType(JSON)
-                    .body(webConfig.absData().toString())
+                    .body(webConfig.absData())
                     .when()
                     .post("Account/v1/User")
                     .then()
@@ -57,7 +56,7 @@ public class AppBookStoreTests {
                     .log().uri()
                     .log().body()
                     .contentType(JSON)
-                    .body(webConfig.absData().toString())
+                    .body(webConfig.absData())
                     .when()
                     .post("Account/v1/GenerateToken")
                     .then()
@@ -79,7 +78,7 @@ public class AppBookStoreTests {
                     .log().uri()
                     .log().body()
                     .contentType(JSON)
-                    .body(webConfig.absNoData().toString())
+                    .body(webConfig.absNoData())
                     .when()
                     .post("Account/v1/GenerateToken")
                     .then()
