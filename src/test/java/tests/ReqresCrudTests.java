@@ -7,12 +7,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.core.Is.is;
+import static specs.RestAssuredSpec.requestSpec;
 
 
 public class ReqresCrudTests {
@@ -30,10 +29,7 @@ public class ReqresCrudTests {
     void createTest() {
 
         step("Создать пользователя с именем и должностью", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .contentType(JSON)
                     .body(webConfig.requestBody().toString())
                     .when()
@@ -51,10 +47,7 @@ public class ReqresCrudTests {
     void updatePutTest() {
 
         step("Обновить должность пользователя", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .contentType(JSON)
                     .body(webConfig.newrequestBody().toString())
                     .when()
@@ -72,10 +65,7 @@ public class ReqresCrudTests {
     void deleteTest() {
 
         step("Удалить данные пользователя", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .delete("/api/users/2")
                     .then()
                     .log().body()
@@ -88,10 +78,7 @@ public class ReqresCrudTests {
     void registerTest() {
 
         step("Создать пользователя с email и паролем", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .contentType(JSON)
                     .body(webConfig.anotherrequestBody().toString())
                     .when()
@@ -109,10 +96,7 @@ public class ReqresCrudTests {
     void getRegisteredUserTest() {
 
         step("Получить данные пользователя", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .get("api/users/4")
                     .then()
                     .log().body()
@@ -129,10 +113,7 @@ public class ReqresCrudTests {
     void loginTest() {
 
         step("Авторизироваться с email и паролем пользовтеля", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .contentType(JSON)
                     .body(webConfig.anotherrequestBody().toString())
                     .when()
