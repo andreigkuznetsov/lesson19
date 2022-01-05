@@ -8,6 +8,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
+import specs.RestAssuredReqSpec;
 
 import java.util.Locale;
 
@@ -18,6 +19,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
+import static specs.RestAssuredDwsSpec.requestSpec;
 
 
 public class DemoWebShopTests extends TestBase {
@@ -50,10 +52,7 @@ public class DemoWebShopTests extends TestBase {
 
         step("Получить cookie через api, установить его в браузере", () -> {
             authorizationCookie =
-                    given()
-                            .filter(customLogFilter().withCustomTemplates())
-                            .log().uri()
-                            .log().body()
+                    given(requestSpec)
                             .contentType("application/x-www-form-urlencoded")
                             .formParam("Email", webConfig.userLogin())
                             .formParam("Password", webConfig.userPassword())
@@ -75,10 +74,7 @@ public class DemoWebShopTests extends TestBase {
 
 
         step("Изменить Имя и Фамилию пользователя", () -> {
-                    given()
-                            .filter(customLogFilter().withCustomTemplates())
-                            .log().uri()
-                            .log().body()
+                    given(requestSpec)
                             .cookie(cookieRequest)
                             .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                             .formParam("__RequestVerificationToken", RequestVerificationToken)

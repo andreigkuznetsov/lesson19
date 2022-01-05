@@ -9,7 +9,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.core.Is.is;
-import static specs.RestAssuredSpec.requestSpec;
+import static specs.RestAssuredReqSpec.requestSpec;
 
 
 public class ReqresCrudTests {
@@ -29,7 +29,7 @@ public class ReqresCrudTests {
         step("Создать пользователя с именем и должностью", () -> {
             given(requestSpec)
                     .contentType(JSON)
-                    .body(webConfig.requestBody().toString())
+                    .body(webConfig.requestBody())
                     .when()
                     .post("api/users")
                     .then()
@@ -42,7 +42,7 @@ public class ReqresCrudTests {
         step("Изменить должность пользователя", () -> {
             given(requestSpec)
                     .contentType(JSON)
-                    .body(webConfig.newrequestBody().toString())
+                    .body(webConfig.newrequestBody())
                     .when()
                     .put("api/users/2")
                     .then()
@@ -73,7 +73,7 @@ public class ReqresCrudTests {
         step("Создать пользователя с email и паролем", () -> {
             given(requestSpec)
                     .contentType(JSON)
-                    .body(webConfig.anotherrequestBody().toString())
+                    .body(webConfig.anotherrequestBody())
                     .when()
                     .post("api/register")
                     .then()
@@ -108,7 +108,7 @@ public class ReqresCrudTests {
         step("Авторизироваться с email и паролем пользовтеля", () -> {
             given(requestSpec)
                     .contentType(JSON)
-                    .body(webConfig.anotherrequestBody().toString())
+                    .body(webConfig.anotherrequestBody())
                     .when()
                     .post("api/login")
                     .then()

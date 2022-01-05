@@ -6,6 +6,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import specs.RestAssuredDwsSpec;
 
 import static filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
@@ -13,6 +14,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
+import static specs.RestAssuredAbsSpec.requestSpec;
 
 public class AppBookStoreTests {
 
@@ -29,10 +31,7 @@ public class AppBookStoreTests {
     void tryToCreateExistsUserTest() {
 
         step("Повторное создание уже зарегистрированного пользователя", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .contentType(JSON)
                     .body(webConfig.absData())
                     .when()
@@ -51,10 +50,7 @@ public class AppBookStoreTests {
     void generateTokenSuccessTest() {
 
         step("Генерация токена для зарегистрированного пользователя", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .contentType(JSON)
                     .body(webConfig.absData())
                     .when()
@@ -73,10 +69,7 @@ public class AppBookStoreTests {
     void generateTokenUnSuccessTest() {
 
         step("Генерация токена для незарегистрированного пользователя", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .contentType(JSON)
                     .body(webConfig.absNoData())
                     .when()
@@ -95,10 +88,7 @@ public class AppBookStoreTests {
     void displayUserUnSuccessTest() {
 
         step("Запрос данных незарегистрированного пользователя", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .get("/Account/v1/User/123")
                     .then()
                     .log().body()
@@ -114,10 +104,7 @@ public class AppBookStoreTests {
     void deleteUserUnSuccessTest() {
 
         step("Удаление незарегистрированного пользователя", () -> {
-            given()
-                    .filter(customLogFilter().withCustomTemplates())
-                    .log().uri()
-                    .log().body()
+            given(requestSpec)
                     .delete("/Account/v1/User/123")
                     .then()
                     .log().body()
