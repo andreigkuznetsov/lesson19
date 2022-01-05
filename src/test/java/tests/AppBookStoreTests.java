@@ -19,7 +19,7 @@ public class AppBookStoreTests {
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
 
     @BeforeAll
-    static void startUrl() {
+    static void startAbsUrl() {
         RestAssured.baseURI = webConfig.apiAbsUrl();
 
     }

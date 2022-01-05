@@ -17,7 +17,7 @@ public class ReqresCrudTests {
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
 
     @BeforeAll
-    static void startUrl() {
+    static void startReqUrl() {
         RestAssured.baseURI = webConfig.apiReqUrl();
 
     }
