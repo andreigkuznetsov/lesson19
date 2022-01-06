@@ -1,10 +1,12 @@
 package tests;
 
+import base.ApiEndpointsReq;
 import config.AppConfig;
-import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -12,7 +14,6 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.core.Is.is;
 import static specs.RestAssuredReqSpec.requestSpec;
 
-@Feature("API тесты для reqres.in")
 public class ReqresCrudTests {
 
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
@@ -32,7 +33,7 @@ public class ReqresCrudTests {
                     .contentType(JSON)
                     .body(webConfig.requestBody())
                     .when()
-                    .post("api/users")
+                    .post(ApiEndpointsReq.users)
                     .then()
                     .log().body()
                     .statusCode(201)
@@ -45,7 +46,7 @@ public class ReqresCrudTests {
                     .contentType(JSON)
                     .body(webConfig.newrequestBody())
                     .when()
-                    .put("api/users/2")
+                    .put(ApiEndpointsReq.users + "/2")
                     .then()
                     .log().body()
                     .statusCode(200)
@@ -60,7 +61,7 @@ public class ReqresCrudTests {
 
         step("Удалить данные пользователя", () -> {
             given(requestSpec)
-                    .delete("/api/users/2")
+                    .delete(ApiEndpointsReq.users + "/2")
                     .then()
                     .log().body()
                     .statusCode(204);
@@ -76,7 +77,7 @@ public class ReqresCrudTests {
                     .contentType(JSON)
                     .body(webConfig.anotherrequestBody())
                     .when()
-                    .post("api/register")
+                    .post(ApiEndpointsReq.register)
                     .then()
                     .log().body()
                     .statusCode(200)
@@ -91,7 +92,7 @@ public class ReqresCrudTests {
 
         step("Получить данные пользователя", () -> {
             given(requestSpec)
-                    .get("api/users/4")
+                    .get(ApiEndpointsReq.users + "/4")
                     .then()
                     .log().body()
                     .statusCode(200)
@@ -111,7 +112,7 @@ public class ReqresCrudTests {
                     .contentType(JSON)
                     .body(webConfig.anotherrequestBody())
                     .when()
-                    .post("api/login")
+                    .post(ApiEndpointsReq.login)
                     .then()
                     .log().body()
                     .statusCode(200)

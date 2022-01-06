@@ -1,7 +1,7 @@
 package tests;
 
+import base.ApiEndpointsAbs;
 import config.AppConfig;
-import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static specs.RestAssuredAbsSpec.requestSpec;
 
-@Feature("API тесты для demoqa.com Book Store")
+
 public class AppBookStoreTests {
 
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
@@ -36,7 +36,7 @@ public class AppBookStoreTests {
                     .contentType(JSON)
                     .body(webConfig.absData())
                     .when()
-                    .post("Account/v1/User")
+                    .post(ApiEndpointsAbs.user)
                     .then()
                     .log().body()
                     .statusCode(406)
@@ -55,7 +55,7 @@ public class AppBookStoreTests {
                     .contentType(JSON)
                     .body(webConfig.absData())
                     .when()
-                    .post("Account/v1/GenerateToken")
+                    .post(ApiEndpointsAbs.gentoken)
                     .then()
                     .log().body()
                     .statusCode(200)
@@ -76,7 +76,7 @@ public class AppBookStoreTests {
                     .contentType(JSON)
                     .body(webConfig.absNoData())
                     .when()
-                    .post("Account/v1/GenerateToken")
+                    .post(ApiEndpointsAbs.gentoken)
                     .then()
                     .log().body()
                     .statusCode(200)
@@ -92,7 +92,7 @@ public class AppBookStoreTests {
 
         step("Запрос данных незарегистрированного пользователя", () -> {
             given(requestSpec)
-                    .get("/Account/v1/User/123")
+                    .get(ApiEndpointsAbs.user + "/123")
                     .then()
                     .log().body()
                     .statusCode(401)
@@ -108,7 +108,7 @@ public class AppBookStoreTests {
 
         step("Удаление незарегистрированного пользователя", () -> {
             given(requestSpec)
-                    .delete("/Account/v1/User/123")
+                    .delete(ApiEndpointsAbs.user + "/123")
                     .then()
                     .log().body()
                     .statusCode(401)
