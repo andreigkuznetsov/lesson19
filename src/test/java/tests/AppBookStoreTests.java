@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static specs.RestAssuredAbsSpec.requestSpec;
 
 public class AppBookStoreTests {
@@ -57,6 +58,8 @@ public class AppBookStoreTests {
                     .log().body()
                     .statusCode(200)
                     .body(matchesJsonSchemaInClasspath("shemas/SuccessGenerateTokenScheme.json"))
+                    .body("token", is(notNullValue()))
+                    .body("expires", is(notNullValue()))
                     .body("status", is("Success"))
                     .body("result", is("User authorized successfully."));
         });
