@@ -1,6 +1,7 @@
 package tests;
 
 import config.AppConfig;
+import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,6 +16,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static specs.RestAssuredAbsSpec.requestSpec;
 
+@Feature("API тесты для demoqa.com Book Store")
 public class AppBookStoreTests {
 
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());

@@ -1,6 +1,7 @@
 package tests;
 
 import config.AppConfig;
+import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.*;
@@ -11,7 +12,7 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.core.Is.is;
 import static specs.RestAssuredReqSpec.requestSpec;
 
-
+@Feature("API тесты для reqres.in")
 public class ReqresCrudTests {
 
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
