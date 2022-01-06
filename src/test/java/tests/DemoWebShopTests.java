@@ -17,7 +17,7 @@ import static io.restassured.RestAssured.given;
 import static specs.RestAssuredDwsSpec.requestSpec;
 
 
-public class DemoWebShopTests {
+public class DemoWebShopTests extends TestBase {
 
     public static AppConfig webConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
     public String authorizationCookie;
